@@ -120,14 +120,14 @@ resource "aws_eip" "one" {
    #Options
    #user_data = file("${path.module}/files/api-data.sh")
    #and inside the api-data.sh put all the commands you want to run on the instance
-   #user_data = <<-EOF
-   #              #!/bin/bash
-   #              sudo apt update -y
-   #              sudo apt install apache2 -y
-   #              sudo systemctl start apache2
-   #              sudo bash -c 'echo your very first web server > /var/www/html/index.html'
-   #              EOF
-   user_data = file("api-data.sh")
+   user_data = <<-EOF
+                 #!/bin/bash
+                 sudo apt update -y
+                 sudo apt install apache2 -y
+                 sudo systemctl start apache2
+                 sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+                 EOF
+   
    tags = {
      Name = "iac-project-01-web-server"
    }
